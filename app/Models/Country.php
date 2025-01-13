@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Driver extends Model
+class Country extends Model
 {
     use HasFactory;
 
-    protected $table = 'driver';
+    protected $table = 'country'; // Match your table name
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string'; 
-    public $timestamps = false;
+    public $timestamps = false; // Disable timestamps if they are not used
 }

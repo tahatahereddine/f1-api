@@ -9,7 +9,7 @@ class ConstructorController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = $request->get('per_page', 10);
+        $perPage = $request->get('per_page', 12);
         $sortBy = $request->get('sort_by', null);
         $sortOrder = $request->get('sort_order', 'desc');
         $search = $request->get('search', null);
@@ -17,7 +17,7 @@ class ConstructorController extends Controller
         $sortableFields = [
             'id', 'name', 'full_name', 'country_id', 
             'total_championship_wins', 'total_race_wins', 
-            'total_podiums', 'total_points', 'total_fastest_laps'
+            'total_podiums', 'total_points', 'total_fastest_laps', "total_pole_positions"
         ];
 
         $query = Constructor::query();
@@ -31,7 +31,7 @@ class ConstructorController extends Controller
             $query->orderBy($sortBy, $sortOrder);
         }
 
-        return $query->simplePaginate($perPage);
+        return $query->Paginate($perPage);
     }
 
     public function show($id)

@@ -9,7 +9,7 @@ class DriverController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = $request->get('per_page', 10);
+        $perPage = $request->get('per_page', 12);
         $sortBy = $request->get('sort_by', null);
         $sortOrder = $request->get('sort_order', 'desc');
         $search = $request->get('search', null);
@@ -24,7 +24,7 @@ class DriverController extends Controller
         // Apply search functionality
         if ($search) {
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('team', 'like', "%{$search}%");
+                  ->orWhere('full_name', 'like', "%{$search}%");
         }
 
         // Apply sorting if valid field provided
@@ -32,7 +32,7 @@ class DriverController extends Controller
             $query->orderBy($sortBy, $sortOrder);
         }
 
-        return $query->simplePaginate($perPage);
+        return $query->Paginate($perPage);
     }
 
     public function show($id)
